@@ -1,0 +1,26 @@
+{
+  "name": "book-management",
+  "version": "1.0.0",
+  "description": "Book Management Library System",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khushigiri/BookManagementLibraryRepo.git"
+  },
+  "author": "Khushi Giri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khushigiri/BookManagementLibraryRepo/issues"
+  },
+  "homepage": "https://github.com/khushigiri/BookManagementLibraryRepo#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
