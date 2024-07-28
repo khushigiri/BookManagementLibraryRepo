@@ -90,6 +90,58 @@ app.post("/users", (req, res) => {
   });
 });
 
+/**
+ * Route: /users/:id
+ * Method: PUT
+ * Description: Updating user by id
+ * Access: Public
+ * Parameters: id
+ */
+
+app.put("/users/:id", (req, res) => {
+  const { id } = req.params;
+  const { data } = req.body;
+  const user = users.find((each) => each.id == id);
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      message: "User dosen't exist!!",
+    });
+  }
+  const updateUserData = users.map((each) => {
+    if (each.id == id) {
+      return {
+        ...each,
+        ...data,
+      };
+    }
+    return each;
+  });
+  return res.status(200).json({
+    success: true,
+    message: "User Updated !!",
+    data: updateUserData,
+  });
+});
+
+/**
+ * Route: /users/:id
+ * Method: DELETE
+ * Description: Deleting user by id
+ * Access: Public
+ * Parameters: id
+ */
+
+app.delete("/users/:id", (req, res) => {
+  const user = users.find((each) => each.id == id);
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      message: "User dosen't exist !!",
+    });
+  }
+});
+
 app.get("*", (req, res) => {
   res.status(404).json({
     message: "This root doesn't exist !!",
