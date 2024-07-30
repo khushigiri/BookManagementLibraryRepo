@@ -23,14 +23,6 @@ router.get("/", (req, res) => {
 });
 
 /**
- * Route: /:id
- * Method: GET
- * Description: Getting user by id
- * Access: Public
- * Parameters: id
- */
-
-/**
  * Route: /issued
  * Method: GET
  * Description: Getting all issued books
@@ -67,6 +59,14 @@ router.get("/issued", (req, res) => {
   });
 });
 
+/**
+ * Route: /:id
+ * Method: GET
+ * Description: Getting user by id
+ * Access: Public
+ * Parameters: id
+ */
+
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   const book = books.find((each) => each.id == id);
@@ -76,10 +76,84 @@ router.get("/:id", (req, res) => {
       message: "Book not found",
     });
   }
+
   return res.status(200).json({
     success: true,
     message: "Book Found !!",
     data: books,
+  });
+});
+
+/**
+ * Route: /
+ * Method: POST
+ * Description: Add new book
+ * Access: Public
+ * Parameters: none
+ */
+
+router.post("/", (req, res) => {
+  const { data } = req.body;
+
+  if (!data) {
+    return res.status(404).json({
+      success: false,
+      message: "No data to add book",
+    });
+  }
+
+  const book = books.find((each) => each.id == data.id);
+  if (book) {
+    return res.status(404).json({
+      success: false,
+      message: "id already exists !!",
+    });
+  }
+  const allBooks = { ...books, data };
+
+  return res.status(200).json({
+    success: true,
+    message: "Book Added Successfully !!",
+    data: allBooks,
+  });
+});
+
+/**
+ * Route: /:id
+ * Method: PUT
+ * Description: Updating book details by is
+ * Access: Public
+ * Parameters:id
+ */
+
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const { data } = req.body;
+
+  const book = books.find((each) => each.id == id);
+
+  if (!book) {
+    return res.status(404).json({
+      success: false,
+      message: "Book not found for this id",
+    });
+  }
+
+  const updateData = books.map((each) => {
+    if (each.id == id) {
+      return {
+        ...each,
+        ...data,
+      };
+    }
+
+    return each;
+  });
+
+  return res.status(200).json({
+    success: true,
+    message: "Updated a book by their id",
+    data: updateData,
   });
 });
 

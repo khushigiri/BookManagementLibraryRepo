@@ -22,36 +22,36 @@ subsccription date has also been missed the renewal >> Fine Rs 100 + (50 per day
 
 ## Routes and EndPoints
 
-# /users
+### /users
 
 POST: Creating a new user.
 GET: Gets all the user info here.
 
-# /users/{id}
+### /users/{id}
 
 GET: Get a user by id.
 PUT: Update a user by id.
 DELETE: Delete a user by id (Check if he/she still has an issued book and is there any fine to be paid).
 
-# /user/subscription-details/{id}
+### /user/subscription-details/{id}
 
 GET: Get user subscription details >> Date of Subscription >> Valid till >> Is there any fine
 
-# /books
+### /books
 
 GET: Get all the books
 POST: Add a new book
 
-# /books/{id}
+### /books/{id}
 
 GET: Get a book by id
 PUT: Update a book by id
 
-# /books/issued
+### /books/issued
 
 GET: Get all issued books
 
-# /books/issued/withFine
+### /books/issued/withFine
 
 GET: Get all issued books with fine.
 
